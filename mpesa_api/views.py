@@ -29,9 +29,9 @@ def lipa_na_mpesa_online(request):
         "Timestamp": LipanaMpesaPpassword.lipa_time,
         "TransactionType": "CustomerPayBillOnline",
         "Amount": 10,
-        "PartyA": 254707486233,  
+        "PartyA": 254707486233,
         "PartyB": LipanaMpesaPpassword.Business_short_code,
-        "PhoneNumber": 254707486233,  
+        "PhoneNumber": 254758677764,
         "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
         "AccountReference": "Ibrah",
         "TransactionDesc": "Testing stk push"
@@ -46,10 +46,10 @@ def register_urls(request):
     access_token = MpesaAccessToken.validated_mpesa_access_token
     api_url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"
     headers = {"Authorization": "Bearer %s" % access_token}
-    options = {"ShortCode": LipanaMpesaPpassword.Business_short_code,
+    options = {"ShortCode": LipanaMpesaPpassword.Test_c2b_shortcode,
                "ResponseType": "Completed",
-               "ConfirmationURL": "http://127.0.0.1:8000/api/v1/c2b/confirmation",
-               "ValidationURL": "http://127.0.0.1:8000/api/v1/c2b/validation"}
+               "ConfirmationURL": "https://6bc0-41-80-114-17.eu.ngrok.ioapi/v1/c2b/confirmation",
+               "ValidationURL": "https://6bc0-41-80-114-17.eu.ngrok.ioapi/v1/c2b/validation"}
     response = requests.post(api_url, json=options, headers=headers)
 
     return HttpResponse(response.text)
